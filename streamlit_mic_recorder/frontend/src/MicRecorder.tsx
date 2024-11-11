@@ -74,8 +74,10 @@ class MicRecorder extends StreamlitComponentBase<State> {
             primaryColor: 'red',
             textColor: 'white'
         };
+        const customCSS = this.props.args["custom_css"] ?? '';
         return (
             <div className="App">
+                <style>{customCSS}</style>
                 <button 
                     className="myButton" 
                     style={this.buttonStyle(Theme)} 

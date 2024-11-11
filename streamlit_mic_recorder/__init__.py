@@ -13,13 +13,13 @@ else:
     build_dir = os.path.join(parent_dir, "frontend/build")
     _component_func = components.declare_component("streamlit_mic_recorder", path=build_dir)
 
-def mic_recorder(start_prompt="Start recording",stop_prompt="Stop recording",just_once=False,use_container_width=False,format="webm",callback=None,args=(),kwargs={},key=None):
+def mic_recorder(start_prompt="Start recording",stop_prompt="Stop recording",just_once=False,use_container_width=False,custom_css=None,format="webm",callback=None,args=(),kwargs={},key=None):
     if not '_last_mic_recorder_audio_id' in st.session_state:
         st.session_state._last_mic_recorder_audio_id=0
     if key and not key+'_output' in st.session_state:
         st.session_state[key+'_output']=None
     new_output=False
-    component_value = _component_func(start_prompt=start_prompt,stop_prompt=stop_prompt,use_container_width=use_container_width,format=format,key=key,default=None)
+    component_value = _component_func(start_prompt=start_prompt,stop_prompt=stop_prompt,use_container_width=use_container_width,custom_css=custom_css,format=format,key=key,default=None)
     if component_value is None:
         output=None
     else:
@@ -40,12 +40,12 @@ def mic_recorder(start_prompt="Start recording",stop_prompt="Stop recording",jus
         callback(*args,**kwargs)
     return output
     
-def speech_to_text(start_prompt="Start recording",stop_prompt="Stop recording",just_once=False,use_container_width=False,language='en',callback=None,args=(),kwargs={},key=None):
+def speech_to_text(start_prompt="Start recording",stop_prompt="Stop recording",just_once=False,use_container_width=False,custom_css=None,language='en',callback=None,args=(),kwargs={},key=None):
     if not '_last_speech_to_text_transcript_id' in st.session_state:
         st.session_state._last_speech_to_text_transcript_id=0
     if key and not key+'_output' in st.session_state:
         st.session_state[key+'_output']=None
-    audio = mic_recorder(start_prompt=start_prompt,stop_prompt=stop_prompt,just_once=just_once,use_container_width=use_container_width,format="wav",key=key)
+    audio = mic_recorder(start_prompt=start_prompt,stop_prompt=stop_prompt,just_once=just_once,use_container_width=use_container_width,custom_css=custom_css,format="wav",key=key)
     new_output=False
     if audio is None:
         output=None
