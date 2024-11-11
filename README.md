@@ -6,7 +6,7 @@ directly.
 ## Installation instructions
 
 ```sh
-pip install streamlit-mic-recorder
+pip install streamlit-mic-recorder-custom
 ```
 
 ## Usage instructions
