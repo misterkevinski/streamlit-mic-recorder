@@ -84,6 +84,7 @@ class MicRecorder extends StreamlitComponentBase<State> {
                     onClick={this.onClick}
                     onMouseEnter={this.handleMouseEnter}
                     onMouseLeave={this.handleMouseLeave}
+                    data-recording={this.state.recording}
                 >
                     {this.buttonPrompt()}
                 </button>
